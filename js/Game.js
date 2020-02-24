@@ -24,7 +24,7 @@ class Game {
       if(playerCountRef.exists()){
         playerCount = playerCountRef.val();
         player.getCount();
-      }
+      };
       form = new Form()
       form.display();
     }
@@ -35,16 +35,25 @@ class Game {
     SpaceShip2.addImage("SpaceShip", SpaceShip2_img);
     SpaceShips = [SpaceShip1, SpaceShip2];
 
-
+    obstacle1 = createSprite(100,100);
+    obstacle1.addImage("obstacle1",obstacle1_img);
+    obstacle2 = createSprite(200,100) ;
+    obstacle2.addImage("obstacle2",obstacle2_img);
+    obstacles = [obstacle1, obstacle2] ;
   }
+
 
   play(){
     form.hide();
     
     Player.getPlayerInfo();
 
+    spawnObstacles()
+
+    player.distance +=50 ;
+
     if(allPlayers !== undefined){
-   background(bg) ;
+   //background(bg) ;
   
 
       
@@ -98,6 +107,11 @@ class Game {
     if(player.distance > 4500){
       gameState = 2;
 
+    }
+
+    for (var i = 0; i < 100; i++) {
+      var r = random(-50,50);
+      line(50, i, 50 + r, i);
     }
    
     drawSprites();
